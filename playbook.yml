@@ -2,6 +2,7 @@
   tasks:
     - name: Test that my module works
       todo:
+        api_key: 'foobar'
       register: result
 
     - debug: var=result
