@@ -2,8 +2,9 @@
 - hosts: localhost
   remote_user: root
   tasks:
-    - pip:
-      name: todoist
+    - name: install todoist python module
+      pip:
+        name: todoist
 
     - name: Test that my module works
       todo:
