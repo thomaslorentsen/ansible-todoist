@@ -96,4 +96,3 @@ ENV/
 .ropeproject
 ### Ansible template
 *.retry
-ansible.cfg
