@@ -1,7 +1,7 @@
-#!/usr/bin/python2.7
+#!/usr/bin/python
 
 from ansible.module_utils.basic import *
-from todoist import TodoistAPI
+from todoist import *
 
 
 def main():
