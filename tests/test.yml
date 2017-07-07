@@ -1,11 +1,12 @@
+---
 - hosts: localhost
+  remote_user: root
   tasks:
     - pip:
-        name: todoist
+      name: todoist
 
     - name: Test that my module works
       todo:
         api_key: 'foobar'
       register: result
-
-    - debug: var=result
+...

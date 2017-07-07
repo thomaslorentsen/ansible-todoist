@@ -3,6 +3,7 @@
 from ansible.module_utils.basic import *
 from todoist import TodoistAPI
 
+
 def main():
     fields = {
         "api_key": {"required": True, "type": "str"},
