@@ -4,7 +4,7 @@ An ansible module for adding todoist events
 
 # Installing
 ```bash
-pip install todoist
+open https://github.com/Doist/todoist-python
 ```
 
 # Testing

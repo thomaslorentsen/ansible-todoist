@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from ansible.module_utils.basic import *
-from todoist import *
+import todoist
 
 
 def main():
@@ -10,7 +10,7 @@ def main():
     }
     module = AnsibleModule(argument_spec=fields)
 
-    doist = TodoistAPI(module.params['api_key'])
+    doist = todoist.TodoistAPI(module.params['api_key'])
 
     response = {"key": module.params['api_key']}
     module.exit_json(changed=False, meta=response)

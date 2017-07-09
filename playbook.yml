@@ -1,9 +1,5 @@
 - hosts: localhost
   tasks:
-    - name: install todoist python module
-      pip:
-        name: todoist
-
     - name: Test that my module works
       todo:
         api_key: 'foobar'
