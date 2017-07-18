@@ -27,7 +27,7 @@ def main():
 
     if module.check_mode:
         response = "Check mode enabled"
-    else
+    else:
         response = doist.commit()
 
     module.exit_json(changed=True, meta=response)
