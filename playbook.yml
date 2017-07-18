@@ -1,8 +1,11 @@
 - hosts: localhost
+  vars_files:
+    - vars/secret.yml
   tasks:
     - name: Test that my module works
       todo:
-        api_key: 'foobar'
+        api_key: "{{ key }}"
+        content: "This was created by Ansible"
       register: result
 
     - debug: var=result

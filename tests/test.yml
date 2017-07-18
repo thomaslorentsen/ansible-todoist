@@ -2,7 +2,7 @@
 - hosts: localhost
   remote_user: root
   tasks:
-    - name: Test that my module works
+    - name: test that my module works
       todo:
         api_key: 'foobar'
       register: result
