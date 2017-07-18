@@ -21,6 +21,7 @@ def main():
     project = projects.pop()
 
     response = doist.items.add(module.params['content'], project['id'])
+    doist.items.update(response['id'], date_string="today")
 
     response = {"response": response['id']}
 
