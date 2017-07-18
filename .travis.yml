@@ -9,13 +9,14 @@ before_install:
 
 install:
   # Install todoist python module
-  - wget -O /tmp/todoist-python-7.0.17.tar.gz https://pypi.python.org/packages/f0/23/87995673c589ee78ce6f1c66693fc3d7b927b3f6b56dc681fa4221440e66/todoist-python-7.0.17.tar.gz
-  - tar -C /tmp/ -xvzf /tmp/todoist-python-7.0.17.tar.gz
-  - cd /tmp/todoist-python-7.0.17
-  - virtualenv -p /usr/bin/python Env
-  - source Env/bin/activate
-  - pip install -e .
-  - cd -
+  - pip install todoist-python
+  #- wget -O /tmp/todoist-python-7.0.17.tar.gz https://pypi.python.org/packages/f0/23/87995673c589ee78ce6f1c66693fc3d7b927b3f6b56dc681fa4221440e66/todoist-python-7.0.17.tar.gz
+  #- tar -C /tmp/ -xvzf /tmp/todoist-python-7.0.17.tar.gz
+  #- cd /tmp/todoist-python-7.0.17
+  #- virtualenv -p /usr/bin/python Env
+  #- source Env/bin/activate
+  #- pip install -e .
+  #- cd -
 
   # Install Ansible.
   - pip install ansible
