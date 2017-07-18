@@ -10,7 +10,7 @@ def main():
         "content": {"required": True, "type": "str"},
         "project": {"default": "Inbox", "type": "str"},
     }
-    module = AnsibleModule(argument_spec=fields)
+    module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
 
     doist = todoist.TodoistAPI(module.params['api_key'])
     response = doist.sync(resource_types=['projects'])
@@ -25,7 +25,10 @@ def main():
 
     response = {"response": response['id']}
 
-    response = doist.commit()
+    if module.check_mode:
+        response = "Check mode enabled"
+    else
+        response = doist.commit()
 
     module.exit_json(changed=True, meta=response)
 
