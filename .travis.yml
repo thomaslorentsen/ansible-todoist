@@ -16,6 +16,8 @@ install:
 
   # Use travis modules
   - cp tests/ansible.cfg ansible.cfg
+  
+  - /usr/bin/python --version
 
 script:
   # Check the role/playbook's syntax.
