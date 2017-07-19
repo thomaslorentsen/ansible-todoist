@@ -13,9 +13,7 @@ def main():
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
 
     doist = todoist.TodoistAPI(module.params['api_key'])
-    response = doist.sync(resource_types=['projects'])
-    if 'error' in response:
-        module.fail_json(changed=False, msg=response['error'])
+    response = sync(module, doist)
 
     projects = doist.projects.all(lambda x: x['name'] == module.params['project'])
     project = projects.pop()
@@ -31,6 +29,16 @@ def main():
         response = doist.commit()
 
     module.exit_json(changed=True, meta=response)
+
+
+def sync(module, api):
+    # type: (AnsibleModule, todoist.TodoistAPI) -> object
+    if module.check_mode:
+        return False
+    response = api.sync()
+    if 'error' in response:
+        module.fail_json(changed=False, msg=response['error'])
+    return response
 
 
 if __name__ == '__main__':

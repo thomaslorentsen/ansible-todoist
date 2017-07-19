@@ -2,11 +2,14 @@
 # Ansible Todoist Module
 An ansible module for adding todoist events
 
+# Prerequisites
+```bash
+pip install todoist-python
+```
 # Installing
 ```bash
 open https://github.com/Doist/todoist-python
 ```
-
 # Testing
 ```bash
 ansible-playbook playbook.yml
