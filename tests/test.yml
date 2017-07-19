@@ -6,5 +6,7 @@
       todo:
         api_key: 'foobar'
         content: 'This was a test of ansible todoist on travis ci'
-      register: result
+        date: today
+        priority: 1
+        indent: 1
 ...

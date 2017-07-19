@@ -10,6 +10,9 @@ def main():
         "api_key": {"required": True, "type": "str"},
         "content": {"required": True, "type": "str"},
         "project": {"default": "Inbox", "type": "str"},
+        "date": {"default": "", "type": "str"},
+        "priority": {"default": 1, "type": "int", "choices": [1, 2, 3, 4]},
+        "indent": {"default": 1, "type": "int", "choices": [1, 2, 3, 4]},
     }
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
 
@@ -19,9 +22,15 @@ def main():
     project = get_project(module, doist)
 
     response = doist.items.add(module.params['content'], project['id'])
-    doist.items.update(response['id'], date_string="today")
+    if module.params['date'] is not "":
+        doist.items.update(response['id'], date_string=module.params['date'])
 
-    response = {"response": response['id']}
+    if module.params['priority'] > 1:
+        doist.items.update(response['id'], priority=module.params['priority'])
+
+    if module.params['indent'] > 1:
+        doist.items.update(response['id'], indent=module.params['indent'])
+
 
     if module.check_mode:
         response = "Check mode enabled"
@@ -33,6 +42,7 @@ def main():
 
 def sync(module, api):
     # type: (AnsibleModule, todoist.TodoistAPI) -> object
+    """Syncs with todoist api"""
     if module.check_mode:
         return False
     response = api.sync()
@@ -43,6 +53,7 @@ def sync(module, api):
 
 def get_project(module, api):
     # type: (AnsibleModule, todoist.TodoistAPI) -> todoist.models.Project
+    """Gets a project from todoist api"""
     if module.check_mode:
         return {'id': 1}
     projects = api.projects.all(lambda x: x['name'] == module.params['project'])

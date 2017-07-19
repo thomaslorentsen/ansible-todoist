@@ -1,11 +1,39 @@
+---
 - hosts: localhost
   vars_files:
     - vars/secret.yml
   tasks:
-    - name: test that my module works
+    - name: test module using every option
       todo:
         api_key: "{{ key }}"
-        content: "This was created by Ansible"
+        content: "Pack my bags"
+        date: today
+        priority: 1
+        indent: 1
       register: result
 
     - debug: var=result
+
+    - name: test indenting at second level
+      todo:
+        api_key: "{{ key }}"
+        content: "toothbrush"
+        indent: 2
+      register: result
+
+    - debug: var=result
+
+    - name: test indenting at second level
+      todo:
+        api_key: "{{ key }}"
+        content: "trousers"
+        indent: 2
+      register: result
+
+    - name: test indenting at second level
+      todo:
+        api_key: "{{ key }}"
+        content: "socks"
+        indent: 2
+      register: result
+...
