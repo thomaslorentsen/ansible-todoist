@@ -2,11 +2,36 @@
 - hosts: localhost
   remote_user: root
   tasks:
-    - name: test that my module works
+    - name: minimum params to run
       todo:
-        api_key: 'foobar'
+        api_key: this_is_my_secret
+        content: 'This was a test of ansible todoist on travis ci'
+    - name: all params
+      todo:
+        api_key: this_is_my_secret
         content: 'This was a test of ansible todoist on travis ci'
         date: today
         priority: 1
         indent: 1
+    - name: test all priorities are valid
+      todo:
+        api_key: this_is_my_secret
+        content: 'This was a test of ansible todoist on travis ci'
+        priority: "{{ item }}"
+      with_items:
+        - 1
+        - 2
+        - 3
+        - 4
+    - name: test all indents are valid
+      todo:
+        api_key: this_is_my_secret
+        content: 'This was a test of ansible todoist on travis ci'
+        indent: "{{ item }}"
+      with_items:
+        - 1
+        - 2
+        - 3
+        - 4
+
 ...
