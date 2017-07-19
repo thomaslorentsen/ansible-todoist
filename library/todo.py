@@ -13,7 +13,7 @@ def main():
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
 
     doist = todoist.TodoistAPI(module.params['api_key'])
-    response = doist.sync(resource_types=['projects'])
+    response = doist.sync()
     if 'error' in response:
         module.fail_json(changed=False, msg=response['error'])
 
