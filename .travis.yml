@@ -16,17 +16,17 @@ install:
   - pip install todoist-python
 
   # Install Ansible.
-  - pip install ansible
+  - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install ansible; else pip install ansible==$ANSIBLE_VERSION; fi
 
   # Use travis modules
   - cp tests/ansible.cfg ansible.cfg
 
 script:
   # Check the role/playbook's syntax.
-  - "ansible-playbook -i tests/inventory tests/test.yml --syntax-check"
+  - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --syntax-check"
 
   # Check role runs in check mode
-  - "ansible-playbook -i tests/inventory tests/test.yml --check"
+  - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --check"
 
   # Run the role/playbook with ansible-playbook.
   #- "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo -vvv"
@@ -37,4 +37,7 @@ script:
   #  | grep -q 'changed=0.*failed=0'
   #  && (echo 'Idempotence test: pass' && exit 0)
   #  || (echo 'Idempotence test: fail' && exit 1)
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
 ...
