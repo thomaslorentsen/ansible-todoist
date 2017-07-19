@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Thomas Lorentsen
   description: Create tasks in Todoist with Ansible
@@ -6,6 +7,41 @@ galaxy_info:
   license: BSD
 
   min_ansible_version: 1.2
+
+  platforms:
+    - name: EL
+      versions:
+      - all
+    - name: GenericUNIX
+      versions:
+      - all
+    - name: Fedora
+      versions:
+      - all
+    - name: opensuse
+      versions:
+      - all
+    - name: Amazon
+      versions:
+      - all
+    - name: GenericBSD
+      versions:
+      - all
+    - name: FreeBSD
+      versions:
+      - all
+    - name: Ubuntu
+      versions:
+      - all
+    - name: SLES
+      versions:
+      - all
+    - name: GenericLinux
+      versions:
+      - all
+    - name: Debian
+      versions:
+      - all
 
   galaxy_tags:
     - todoist
@@ -16,7 +52,8 @@ galaxy_info:
     # NOTE: A tag is limited to a single word comprised of alphanumeric characters.
     #       Maximum 20 tags per role.
 
-dependencies:
-  - todoist
+dependencies: []
   # List your role dependencies here, one per line. Be sure to remove the '[]' above,
   # if you add dependencies to this list.
+
+...
