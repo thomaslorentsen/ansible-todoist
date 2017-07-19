@@ -3,7 +3,8 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+This is an Ansible Module that integrates into the [Todoist](https://developer.todoist.com) api.
+With this module you can automate adding todo items to your projects.
 
 Requirements
 ------------
