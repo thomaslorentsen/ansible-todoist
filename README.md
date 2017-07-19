@@ -33,9 +33,22 @@ Including an example of how to use your role (for instance, with variables passe
           
         - todo:
             api_key: your_todoist_api_key_here
-            content: Added to Inbox to be completed today
-            date: today
-          
+            content: A single label
+            labels: today
+        
+        - todo:
+            api_key: your_todoist_api_key_here
+            content: Multiple labels
+            labels:
+              - small
+              - medium
+              - large
+            
+        - todo:
+            api_key: your_todoist_api_key_here
+            content: A high priority task
+            priority: 4
+
         - todo:
             api_key: your_todoist_api_key_here
             content: A high priority task

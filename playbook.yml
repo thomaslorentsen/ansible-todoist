@@ -6,34 +6,15 @@
     - name: test module using every option
       todo:
         api_key: "{{ key }}"
-        content: "Pack my bags"
+        content: This was created by ansible
         date: today
         priority: 1
         indent: 1
+        labels:
+          - small
+          - medium
+          - large
       register: result
 
     - debug: var=result
-
-    - name: test indenting at second level
-      todo:
-        api_key: "{{ key }}"
-        content: "toothbrush"
-        indent: 2
-      register: result
-
-    - debug: var=result
-
-    - name: test indenting at second level
-      todo:
-        api_key: "{{ key }}"
-        content: "trousers"
-        indent: 2
-      register: result
-
-    - name: test indenting at second level
-      todo:
-        api_key: "{{ key }}"
-        content: "socks"
-        indent: 2
-      register: result
 ...

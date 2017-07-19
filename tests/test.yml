@@ -13,6 +13,16 @@
         date: today
         priority: 1
         indent: 1
+        labels:
+          - small
+          - medium
+          - large
+    - name: single label
+      todo:
+        api_key: this_is_my_secret
+        content: 'This was a test of ansible todoist on travis ci'
+        labels:
+          - small
     - name: test all priorities are valid
       todo:
         api_key: this_is_my_secret

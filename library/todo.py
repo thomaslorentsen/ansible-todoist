@@ -10,6 +10,7 @@ def main():
         "api_key": {"required": True, "type": "str"},
         "content": {"required": True, "type": "str"},
         "project": {"default": "Inbox", "type": "str"},
+        "labels": {"default": [], "type": "list"},
         "date": {"default": "", "type": "str"},
         "priority": {"default": 1, "type": "int", "choices": [1, 2, 3, 4]},
         "indent": {"default": 1, "type": "int", "choices": [1, 2, 3, 4]},
@@ -31,6 +32,15 @@ def main():
     if module.params['indent'] > 1:
         doist.items.update(response['id'], indent=module.params['indent'])
 
+    if type(module.params['labels']) is str:
+        module.params['labels'] = [module.params['labels']]
+
+    if module.params['labels'] is not []:
+        labels = []
+        for label in module.params['labels']:
+            label = get_label(module, doist, label)
+            labels.append(label['id'])
+        doist.items.update(response['id'], labels=labels)
 
     if module.check_mode:
         response = "Check mode enabled"
@@ -59,6 +69,14 @@ def get_project(module, api):
     projects = api.projects.all(lambda x: x['name'] == module.params['project'])
     return projects.pop()
 
+
+def get_label(module, api, label):
+    # type: (AnsibleModule, todoist.TodoistAPI, str) -> todoist.models.Project
+    """Gets a lable from todoist api"""
+    if module.check_mode:
+        return {'id': 1}
+    labels = api.labels.all(lambda x: x['name'] == label)
+    return labels.pop()
 
 if __name__ == '__main__':
     main()
