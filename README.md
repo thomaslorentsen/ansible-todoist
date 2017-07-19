@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/thomaslorentsen/ansible-todoist.svg?branch=master)](https://travis-ci.org/thomaslorentsen/ansible-todoist)
 [![Ansible Role](https://img.shields.io/ansible/role/19334.svg)](https://galaxy.ansible.com/thomaslorentsen/todoist/)
 
-Role Name
+Todoist
 =========
 
 This is an Ansible Module that integrates into the [Todoist](https://developer.todoist.com) api.
