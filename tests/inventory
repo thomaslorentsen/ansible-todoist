@@ -1,1 +1,1 @@
-localhost ansible_python_interpreter=/home/travis/virtualenv/python2.7.13/bin/python
+localhost ansible_connection=local ansible_python_interpreter=/home/travis/virtualenv/python2.7.13/bin/python
