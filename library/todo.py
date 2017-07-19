@@ -2,6 +2,7 @@
 
 from ansible.module_utils.basic import *
 import todoist
+import todoist.models
 
 
 def main():
@@ -15,8 +16,7 @@ def main():
     doist = todoist.TodoistAPI(module.params['api_key'])
     response = sync(module, doist)
 
-    projects = doist.projects.all(lambda x: x['name'] == module.params['project'])
-    project = projects.pop()
+    project = get_project(module, doist)
 
     response = doist.items.add(module.params['content'], project['id'])
     doist.items.update(response['id'], date_string="today")
@@ -39,6 +39,14 @@ def sync(module, api):
     if 'error' in response:
         module.fail_json(changed=False, msg=response['error'])
     return response
+
+
+def get_project(module, api):
+    # type: (AnsibleModule, todoist.TodoistAPI) -> todoist.models.Project
+    if module.check_mode:
+        return {'id': 1}
+    projects = api.projects.all(lambda x: x['name'] == module.params['project'])
+    return projects.pop()
 
 
 if __name__ == '__main__':
