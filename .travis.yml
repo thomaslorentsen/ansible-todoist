@@ -9,7 +9,7 @@ before_install:
 
 install:
   # Install todoist python module
-  - /usr/bin/python -m pip install todoist-python
+  - pip install todoist-python
 
   # Install Ansible.
   - pip install ansible
