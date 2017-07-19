@@ -13,6 +13,9 @@ install:
 
   # Install Ansible.
   - pip install ansible
+  
+  # Show version of pip packages installed
+  - pip freeze
 
   # Use travis modules
   - cp tests/ansible.cfg ansible.cfg
