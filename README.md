@@ -23,28 +23,28 @@ Including an example of how to use your role (for instance, with variables passe
     - hosts: servers
       roles:
         - todo:
-          api_key: your_todoist_api_key_here
-          content: Added to Inbox
+            api_key: your_todoist_api_key_here
+            content: Added to Inbox
         
         - todo:
-          api_key: your_todoist_api_key_here
-          content: Added to Personal project
-          project: Personal
+            api_key: your_todoist_api_key_here
+            content: Added to Personal project
+            project: Personal
           
         - todo:
-          api_key: your_todoist_api_key_here
-          content: Added to Inbox to be completed today
-          date: today
+            api_key: your_todoist_api_key_here
+            content: Added to Inbox to be completed today
+            date: today
           
         - todo:
-          api_key: your_todoist_api_key_here
-          content: A high priority task
-          priority: 4
+            api_key: your_todoist_api_key_here
+            content: A high priority task
+            priority: 4
           
         - todo:
-          api_key: your_todoist_api_key_here
-          content: An indented task
-          indent: 2
+            api_key: your_todoist_api_key_here
+            content: An indented task
+            indent: 2
 
 You will need to add this module to your modules path to run:
 ```bash
