@@ -63,6 +63,11 @@ You will need to add this module to your modules path to run:
 ```bash
 ansible-playbook --module-path /etc/ansible/roles/thomaslorentsen.todoist/library
 ```
+Or set the module path in ```ansible.cfg``` file
+```bash
+[defaults]
+library = /etc/ansible/roles/thomaslorentsen.todoist/library
+```
 
 License
 -------
