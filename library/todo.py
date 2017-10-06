@@ -22,6 +22,10 @@ def main():
 
     project = get_project(module, doist)
 
+    existing_item = item_exists(module.check_mode, doist, module.params['content'], project['id'])
+    if existing_item:
+        module.exit_json(changed=False, meta=existing_item['id'])
+
     response = doist.items.add(module.params['content'], project['id'])
     if module.params['date'] is not "":
         doist.items.update(response['id'], date_string=module.params['date'])
@@ -72,11 +76,22 @@ def get_project(module, api):
 
 def get_label(module, api, label):
     # type: (AnsibleModule, todoist.TodoistAPI, str) -> todoist.models.Project
-    """Gets a lable from todoist api"""
+    """Gets a label from todoist api"""
     if module.check_mode:
         return {'id': 1}
     labels = api.labels.all(lambda x: x['name'] == label)
     return labels.pop()
+
+
+def item_exists(check_mode, api, content, project):
+    # type: (AnsibleModule, todoist.TodoistAPI, str) -> todoist.models.Project
+    """Gets an item from todoist api"""
+    if check_mode:
+        return False
+    items = api.items.all(lambda x: x['in_history'] == 0 and x['is_deleted'] == 0 and x['is_archived'] == 0 and x['project_id'] == project and x['content'] == content)
+    if len(items) == 0:
+        return False
+    return items.pop()
 
 if __name__ == '__main__':
     main()
