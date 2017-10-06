@@ -34,7 +34,7 @@ Including an example of how to use your role (for instance, with variables passe
         - todo:
             api_key: your_todoist_api_key_here
             content: A single label
-            labels: today
+            date: today
         
         - todo:
             api_key: your_todoist_api_key_here
