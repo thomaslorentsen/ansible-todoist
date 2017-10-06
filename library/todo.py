@@ -24,9 +24,13 @@ def main():
 
     existing_item = item_exists(module.check_mode, doist, module.params['content'], project['id'])
     if existing_item:
-        module.exit_json(changed=False, meta=existing_item['id'])
+        if False == item_changed(existing_item, module.params):
+            module.exit_json(changed=False, meta=existing_item['id'])
+        else:
+            response = existing_item
+    else:
+        response = doist.items.add(module.params['content'], project['id'])
 
-    response = doist.items.add(module.params['content'], project['id'])
     if module.params['date'] is not "":
         doist.items.update(response['id'], date_string=module.params['date'])
 
@@ -84,7 +88,7 @@ def get_label(module, api, label):
 
 
 def item_exists(check_mode, api, content, project):
-    # type: (AnsibleModule, todoist.TodoistAPI, str) -> todoist.models.Project
+    # type: (AnsibleModule, todoist.TodoistAPI, str, str) -> todoist.models.Project
     """Gets an item from todoist api"""
     if check_mode:
         return False
@@ -92,6 +96,15 @@ def item_exists(check_mode, api, content, project):
     if len(items) == 0:
         return False
     return items.pop()
+
+
+def item_changed(existing_item, params):
+    # type: (todoist.models.Project, AnsibleModule) -> bool
+    """Checks if an item has changed"""
+    if existing_item['priority'] != params['priority']:
+        return True
+    return False
+
 
 if __name__ == '__main__':
     main()
