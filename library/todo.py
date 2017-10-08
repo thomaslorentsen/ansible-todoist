@@ -24,7 +24,7 @@ def main():
 
     existing_item = item_exists(module.check_mode, doist, module.params['content'], project['id'])
     if existing_item:
-        if False == item_changed(existing_item, module.params):
+        if not item_changed(existing_item, module.params):
             module.exit_json(changed=False, meta=existing_item['id'])
         else:
             response = existing_item
