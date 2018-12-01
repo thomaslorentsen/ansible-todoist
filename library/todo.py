@@ -3,6 +3,7 @@
 from ansible.module_utils.basic import *
 import todoist
 import todoist.models
+import time
 
 
 def main():
@@ -14,6 +15,7 @@ def main():
         "date": {"default": "", "type": "str"},
         "priority": {"default": 1, "type": "int", "choices": [1, 2, 3, 4]},
         "indent": {"default": 1, "type": "int", "choices": [1, 2, 3, 4]},
+        "sleep": {"default": 1, "type": "int"},
     }
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
 
@@ -54,6 +56,8 @@ def main():
         response = "Check mode enabled"
     else:
         response = doist.commit()
+
+    time.sleep(module.params['sleep'])
 
     module.exit_json(changed=True, meta=response)
 

@@ -6,7 +6,7 @@
     - name: test module using every option
       todo:
         api_key: "{{ key }}"
-        content: An ansible creation
+        content: An automated ansible creation
         project: Inbox
         date: today
         priority: 1

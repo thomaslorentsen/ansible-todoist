@@ -6,6 +6,7 @@
       todo:
         api_key: this_is_my_secret
         content: 'This was a test of ansible todoist on travis ci'
+
     - name: all params
       todo:
         api_key: this_is_my_secret
@@ -17,12 +18,14 @@
           - small
           - medium
           - large
+
     - name: single label
       todo:
         api_key: this_is_my_secret
         content: 'This was a test of ansible todoist on travis ci'
         labels:
           - small
+
     - name: test all priorities are valid
       todo:
         api_key: this_is_my_secret
@@ -33,6 +36,7 @@
         - 2
         - 3
         - 4
+
     - name: test all indents are valid
       todo:
         api_key: this_is_my_secret
