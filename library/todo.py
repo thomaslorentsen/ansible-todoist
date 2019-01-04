@@ -96,7 +96,9 @@ def item_exists(check_mode, api, content, project):
     """Gets an item from todoist api"""
     if check_mode:
         return False
-    items = api.items.all(lambda x: x['content'] == content and x['project_id'] == project and x['in_history'] == 0 and x['is_deleted'] == 0 and x['is_archived'] == 0)
+    items = api.items.all(
+        lambda x: x['content'] == content and x['project_id'] == project and x['in_history'] == 0 and x[
+            'is_deleted'] == 0 and x['is_archived'] == 0)
     if len(items) == 0:
         return False
     return items.pop()
