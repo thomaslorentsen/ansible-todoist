@@ -15,7 +15,7 @@ def main():
         "date": {"default": "", "type": "str"},
         "priority": {"default": 1, "type": "int", "choices": [1, 2, 3, 4]},
         "indent": {"default": 1, "type": "int", "choices": [1, 2, 3, 4]},
-        "sleep": {"default": 1, "type": "int"},
+        "sleep": {"default": 5, "type": "int"},
     }
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
 
